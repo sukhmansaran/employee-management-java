@@ -57,8 +57,7 @@ class emp_add extends jdbc{
             String emp_fname = br.readLine();
 
             System.out.println("Enter Employee ID: ");
-            String empid = br.readLine();
-            int emp_id = Integer.parseInt(empid);
+            int emp_id = Integer.parseInt(br.readLine());
 
             System.out.println("Enter Employee Email ID: ");
             String emp_email = br.readLine();
@@ -67,12 +66,10 @@ class emp_add extends jdbc{
             String emp_pos = br.readLine();
 
             System.out.println("Enter Employee Contact: ");
-            String empcon = br.readLine();
-            int emp_con = Integer.parseInt(empcon);
+            int emp_con = Integer.parseInt(br.readLine());
 
             System.out.println("Enter Employee Salary: ");
-            String empsal = br.readLine();
-            int emp_sal = Integer.parseInt(empsal);
+            int emp_sal = Integer.parseInt(br.readLine());
 
             pstmt.setString(1,emp_name);
             pstmt.setString(2,emp_fname);
@@ -110,53 +107,100 @@ class emp_update extends jdbc{
             Scanner sc= new Scanner(System.in);
             System.out.print("To Update Employee Name Enter 1: ");
             System.out.print("To Update Father's Name Enter 2: ");
-            System.out.print("To Update Employee ID Enter 3: ");
-            System.out.print("To Update Employee Email ID Enter 4: ");
-            System.out.print("To Update Employee Position Enter 5: ");
-            System.out.print("To Update Employee Contact Enter 6: ");
-            System.out.print("To Update Employee Salary Enter 7: ");
+            System.out.print("To Update Employee Email ID Enter 3: ");
+            System.out.print("To Update Employee Position Enter 4: ");
+            System.out.print("To Update Employee Contact Enter 5: ");
+            System.out.print("To Update Employee Salary Enter 6: ");
 
+            String q;
             String stri= sc.nextLine();
             int str = Integer.parseInt(stri);
             switch (str) {
                 case 1 -> {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                     System.out.println("Enter New Name: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    String name = br.readLine();
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_name=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setString(1,name);
+                    pstmt.setInt(2,emp_id);
                 }
                 case 2 -> {
-                    System.out.println("Enter New Name: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter New Father's Name: ");
+                    String fname = br.readLine();
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_fname=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setString(1,fname);
+                    pstmt.setInt(2,emp_id);
                 }
                 case 3 -> {
-                    System.out.println("Enter New Employee ID: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter New Email: ");
+                    String email = br.readLine();
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_email=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setString(1,email);
+                    pstmt.setInt(2,emp_id);
                 }
                 case 4 -> {
-                    System.out.println("Enter New Email ID: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter New Position: ");
+                    String pos = br.readLine();
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_pos=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setString(1,pos);
+                    pstmt.setInt(2, emp_id);
                 }
                 case 5 -> {
-                    System.out.println("Enter New Employee Position: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter New Contact: ");
+                    int cont = Integer.parseInt(br.readLine());
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_con=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setInt(1,cont);
+                    pstmt.setInt(2,emp_id);
                 }
                 case 6 -> {
-                    System.out.println("Enter New Employee Contact: ");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
-                }
-                case 7 -> {
-                    System.out.println("Enter New Employee Salary");
-                    Scanner s = new Scanner(System.in);
-                    String st = s.nextLine();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter New Salary: ");
+                    int sal = Integer.parseInt(br.readLine());
+
+                    System.out.println("Enter Employee ID: ");
+                    int emp_id = Integer.parseInt(br.readLine());
+
+                    q = "update empdetail set emp_sal=? where emp_id=?";
+
+                    PreparedStatement pstmt = con.prepareStatement(q);
+                    pstmt.setInt(1,sal);
+                    pstmt.setInt(2,emp_id);
                 }
             }
-            String q = "update empdetail";
-            PreparedStatement pstmt = con.prepareStatement(q);
 
         }
         catch (Exception e){
