@@ -106,6 +106,14 @@ class emp_view extends jdbc{
                 int cont = set.getInt(6);
                 int sal = set.getInt(7);
 
+                System.out.println("Employee Name: ");
+                System.out.println("Employee Father's Name: ");
+                System.out.println("Employee Id: ");
+                System.out.println("Employee Email ID: ");
+                System.out.println("Employee Position: ");
+                System.out.println("Employee Contact: ");
+                System.out.println("Employee Salary: ");
+
             }
         }
         catch (Exception e){
