@@ -119,41 +119,41 @@ class emp_update extends jdbc{
             String stri= sc.nextLine();
             int str = Integer.parseInt(stri);
             switch (str) {
-                case 1:
+                case 1 -> {
                     System.out.println("Enter New Name: ");
-                    Scanner s1= new Scanner(System.in);
-                    String st1= s1.nextLine();
-                    break;
-                case 2:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 2 -> {
                     System.out.println("Enter New Name: ");
-                    Scanner s2= new Scanner(System.in);
-                    String st2= s2.nextLine();
-                    break;
-                case 3:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 3 -> {
                     System.out.println("Enter New Employee ID: ");
-                    Scanner s3= new Scanner(System.in);
-                    String st3= s3.nextLine();
-                    break;
-                case 4:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 4 -> {
                     System.out.println("Enter New Email ID: ");
-                    Scanner s4= new Scanner(System.in);
-                    String st4= s4.nextLine();
-                    break;
-                case 5:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 5 -> {
                     System.out.println("Enter New Employee Position: ");
-                    Scanner s5= new Scanner(System.in);
-                    String st5= s5.nextLine();
-                    break;
-                case 6:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 6 -> {
                     System.out.println("Enter New Employee Contact: ");
-                    Scanner s6= new Scanner(System.in);
-                    String st6= s6.nextLine();
-                    break;
-                case 7:
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
+                case 7 -> {
                     System.out.println("Enter New Employee Salary");
-                    Scanner s7= new Scanner(System.in);
-                    String st7= s7.nextLine();
-                    break;
+                    Scanner s = new Scanner(System.in);
+                    String st = s.nextLine();
+                }
             }
             String q = "update empdetail";
             PreparedStatement pstmt = con.prepareStatement(q);
