@@ -1,7 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import javax.xml.transform.Result;
+import java.sql.*;
 import java.util.*;
 import java.io.*;
 
@@ -90,8 +88,25 @@ class emp_add extends jdbc{
 class emp_view extends jdbc{
     public void view(){
         try{
-            String q = "select * from empdetail";
+            String q = "select * from empdetail where emp_id=?";
+            System.out.println("Enter Employee ID: ");
+            Scanner sc = new Scanner(System.in);
+            int id = sc.nextInt();
+
             PreparedStatement pstmt = con.prepareStatement(q);
+            pstmt.setInt(1,id);
+            ResultSet set = pstmt.executeQuery(q);
+
+            while(set.next()){
+                String name = set.getString(1);
+                String fname = set.getString(2);
+                int empid = set.getInt(3);
+                String email = set.getString(4);
+                String pos = set.getString(5);
+                int cont = set.getInt(6);
+                int sal = set.getInt(7);
+
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -111,6 +126,7 @@ class emp_update extends jdbc{
             System.out.print("To Update Employee Position Enter 4: ");
             System.out.print("To Update Employee Contact Enter 5: ");
             System.out.print("To Update Employee Salary Enter 6: ");
+            System.out.print("Cannot Update Employee ID ");
 
             String q;
             String stri= sc.nextLine();
@@ -129,6 +145,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,name);
                     pstmt.setInt(2,emp_id);
+                    pstmt.executeUpdate();
                 }
                 case 2 -> {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -143,6 +160,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,fname);
                     pstmt.setInt(2,emp_id);
+                    pstmt.executeUpdate();
                 }
                 case 3 -> {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -157,6 +175,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,email);
                     pstmt.setInt(2,emp_id);
+                    pstmt.executeUpdate();
                 }
                 case 4 -> {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -171,6 +190,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,pos);
                     pstmt.setInt(2, emp_id);
+                    pstmt.executeUpdate();
                 }
                 case 5 -> {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -185,6 +205,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setInt(1,cont);
                     pstmt.setInt(2,emp_id);
+                    pstmt.executeUpdate();
                 }
                 case 6 -> {
                     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -199,6 +220,7 @@ class emp_update extends jdbc{
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setInt(1,sal);
                     pstmt.setInt(2,emp_id);
+                    pstmt.executeUpdate();
                 }
             }
 
@@ -208,3 +230,4 @@ class emp_update extends jdbc{
         }
     }
 }
+
