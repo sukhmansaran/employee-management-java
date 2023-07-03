@@ -106,13 +106,13 @@ class emp_view extends jdbc{
                 int cont = set.getInt(6);
                 int sal = set.getInt(7);
 
-                System.out.println("Employee Name: ");
-                System.out.println("Employee Father's Name: ");
-                System.out.println("Employee Id: ");
-                System.out.println("Employee Email ID: ");
-                System.out.println("Employee Position: ");
-                System.out.println("Employee Contact: ");
-                System.out.println("Employee Salary: ");
+                System.out.println("Employee Name: "+name);
+                System.out.println("Employee Father's Name: "+fname);
+                System.out.println("Employee Id: "+empid);
+                System.out.println("Employee Email ID: "+email);
+                System.out.println("Employee Position: "+pos);
+                System.out.println("Employee Contact: "+cont);
+                System.out.println("Employee Salary: "+sal);
 
             }
         }
@@ -122,6 +122,24 @@ class emp_view extends jdbc{
     }
 }
 
+/************************ To delete details of Employee *********************/
+class emp_dlt extends jdbc{
+    public void dlt(){
+        try{
+            String q = "delete from empdetail where emp_id=?";
+            Scanner sc= new Scanner(System.in);
+            System.out.println("Enter Employee ID: ");
+            String id= sc.nextLine();
+            int emp_id = Integer.parseInt(id);
+            PreparedStatement pstmt = con.prepareStatement(q);
+            pstmt.setInt(1,emp_id);
+            pstmt.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
 
 /************************ To update details of Employee *********************/
 class emp_update extends jdbc{
