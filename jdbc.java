@@ -1,12 +1,11 @@
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.*;
 import java.io.*;
 
 
-class jdbc{
-    protected static Connection con;
-    public void connect(){
+public class jdbc{
+    public static Connection connect(){
+        Connection con = null;
         try {
             //creating connection
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,11 +19,11 @@ class jdbc{
 //            Statement stmt = con.createStatement();
 //            stmt.executeUpdate(q);
 //            con.close();
-
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        return con;
     }
 }
 
@@ -44,6 +43,7 @@ class mainmenu {
 class emp_add extends jdbc{
     public void add(){
         try{
+            Connection con = jdbc.connect();
             String q = "insert into empdetail values (?,?,?,?,?,?,?)";
             PreparedStatement pstmt = con.prepareStatement(q);
 
@@ -88,14 +88,15 @@ class emp_add extends jdbc{
 class emp_view extends jdbc{
     public void view(){
         try{
-            String q = "select * from empdetail where emp_id=?";
+            String q = "select * from empdetail where empID=?";
             System.out.println("Enter Employee ID: ");
             Scanner sc = new Scanner(System.in);
             int id = sc.nextInt();
 
+            Connection con = jdbc.connect();
             PreparedStatement pstmt = con.prepareStatement(q);
             pstmt.setInt(1,id);
-            ResultSet set = pstmt.executeQuery(q);
+            ResultSet set = pstmt.executeQuery();
 
             while(set.next()){
                 String name = set.getString(1);
@@ -115,6 +116,8 @@ class emp_view extends jdbc{
                 System.out.println("Employee Salary: "+sal);
 
             }
+            set.close();
+            pstmt.close();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -131,6 +134,8 @@ class emp_dlt extends jdbc{
             System.out.println("Enter Employee ID: ");
             String id= sc.nextLine();
             int emp_id = Integer.parseInt(id);
+
+            Connection con = jdbc.connect();
             PreparedStatement pstmt = con.prepareStatement(q);
             pstmt.setInt(1,emp_id);
             pstmt.executeUpdate();
@@ -168,6 +173,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_name=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,name);
                     pstmt.setInt(2,emp_id);
@@ -183,6 +189,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_fname=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,fname);
                     pstmt.setInt(2,emp_id);
@@ -198,6 +205,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_email=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,email);
                     pstmt.setInt(2,emp_id);
@@ -213,6 +221,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_pos=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setString(1,pos);
                     pstmt.setInt(2, emp_id);
@@ -228,6 +237,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_con=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setInt(1,cont);
                     pstmt.setInt(2,emp_id);
@@ -243,6 +253,7 @@ class emp_update extends jdbc{
 
                     q = "update empdetail set emp_sal=? where emp_id=?";
 
+                    Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
                     pstmt.setInt(1,sal);
                     pstmt.setInt(2,emp_id);
@@ -257,3 +268,79 @@ class emp_update extends jdbc{
     }
 }
 
+/************************ To Exit from the EMS Portal *********************/
+
+class CodeExit {
+    public void out() {
+        System.out.println("\n*****************************************");
+        System.out.println("Thank You For Using our Software :) ");
+        System.out.println("*****************************************");
+        System.exit(0);
+    }
+}
+
+/***************************** Main Class *******************************/
+class EmployManagementSystem {
+    public static void main(String[] args) {
+        System.out.print("\033[H\033[2J");
+
+        Scanner sc=new Scanner(System.in);
+        emp_view epv =new emp_view();
+
+        int i=0;
+        mainmenu obj1 = new mainmenu();
+        obj1.menu();
+
+        while(i<6) {
+            System.out.print("\nPlease Enter choice :");
+            i=Integer.parseInt(sc.nextLine());
+
+            switch (i) {
+                case 1 -> {
+                    emp_add ep = new emp_add();
+                    ep.add();
+
+                    System.out.print("\nPress Enter to Continue...");
+                    sc.nextLine();
+                    System.out.print("\033[H\033[2J");
+                    obj1.menu();
+                    break;
+                }
+                case 2 -> {
+                    emp_view ep = new emp_view();
+                    ep.view();
+
+                    System.out.print("\nPress Enter to Continue...");
+                    sc.nextLine();
+                    System.out.print("\033[H\033[2J");
+                    obj1.menu();
+                    break;
+                }
+                case 3 -> {
+                    emp_dlt epr = new emp_dlt();
+                    epr.dlt();
+
+                    System.out.print("\nPress Enter to Continue...");
+                    sc.nextLine();
+                    System.out.print("\033[H\033[2J");
+                    obj1.menu();
+                    break;
+                }
+                case 4 -> {
+                    emp_update epr = new emp_update();
+                    epr.update();
+
+                    System.out.print("\nPress Enter to Continue...");
+                    sc.nextLine();
+                    System.out.print("\033[H\033[2J");
+                    obj1.menu();
+                    break;
+                }
+                case 5 -> {
+                    CodeExit obj = new CodeExit();
+                    obj.out();
+                }
+            }
+        }
+    }
+}
