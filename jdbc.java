@@ -129,7 +129,7 @@ class emp_view extends jdbc{
 class emp_dlt extends jdbc{
     public void dlt(){
         try{
-            String q = "delete from empdetail where emp_id=?";
+            String q = "delete from empdetail where empID=?";
             Scanner sc= new Scanner(System.in);
             System.out.println("Enter Employee ID: ");
             String id= sc.nextLine();
@@ -151,13 +151,13 @@ class emp_update extends jdbc{
     public void update(){
         try {
             Scanner sc= new Scanner(System.in);
-            System.out.print("To Update Employee Name Enter 1: ");
-            System.out.print("To Update Father's Name Enter 2: ");
-            System.out.print("To Update Employee Email ID Enter 3: ");
-            System.out.print("To Update Employee Position Enter 4: ");
-            System.out.print("To Update Employee Contact Enter 5: ");
-            System.out.print("To Update Employee Salary Enter 6: ");
-            System.out.print("Cannot Update Employee ID ");
+            System.out.println("To Update Employee Name Enter 1: ");
+            System.out.println("To Update Father's Name Enter 2: ");
+            System.out.println("To Update Employee Email ID Enter 3: ");
+            System.out.println("To Update Employee Position Enter 4: ");
+            System.out.println("To Update Employee Contact Enter 5: ");
+            System.out.println("To Update Employee Salary Enter 6: ");
+            System.out.println("Cannot Update Employee ID ");
 
             String q;
             String stri= sc.nextLine();
@@ -171,7 +171,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_name=? where emp_id=?";
+                    q = "update empdetail set emp_name=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
@@ -187,7 +187,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_fname=? where emp_id=?";
+                    q = "update empdetail set emp_fname=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
@@ -203,7 +203,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_email=? where emp_id=?";
+                    q = "update empdetail set emp_email=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
@@ -219,7 +219,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_pos=? where emp_id=?";
+                    q = "update empdetail set emp_pos=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
@@ -235,7 +235,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_con=? where emp_id=?";
+                    q = "update empdetail set emp_con=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
@@ -251,7 +251,7 @@ class emp_update extends jdbc{
                     System.out.println("Enter Employee ID: ");
                     int emp_id = Integer.parseInt(br.readLine());
 
-                    q = "update empdetail set emp_sal=? where emp_id=?";
+                    q = "update empdetail set emp_sal=? where empID=?";
 
                     Connection con = jdbc.connect();
                     PreparedStatement pstmt = con.prepareStatement(q);
